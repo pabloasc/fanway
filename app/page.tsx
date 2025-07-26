@@ -27,20 +27,26 @@ const brandRequirements = {
     { key: "front", label: "Front View", description: "Full front view of the jersey" },
     { key: "back", label: "Back View", description: "Full back view with name/number" },
     { key: "logo", label: "Adidas Logo", description: "Close-up of the three stripes logo" },
-    { key: "tag", label: "Care Label", description: "Internal care label with size info" },
+    { key: "tag", label: "Internal Model/Date Tag", description: "Internal model and date label" },
   ],
   nike: [
     { key: "front", label: "Front View", description: "Full front view of the jersey" },
     { key: "back", label: "Back View", description: "Full back view with name/number" },
     { key: "swoosh", label: "Nike Swoosh", description: "Close-up of the Nike swoosh logo" },
-    { key: "drifit", label: "Dri-FIT Label", description: "Dri-FIT technology label" },
+    { key: "teamlogo", label: "Team Logo", description: "Dri-FIT technology label" },
     { key: "internal", label: "Internal Tag", description: "Internal size and authenticity tag" },
   ],
   puma: [
     { key: "front", label: "Front View", description: "Full front view of the jersey" },
     { key: "back", label: "Back View", description: "Full back view with name/number" },
-    { key: "cat", label: "Puma Cat Logo", description: "Close-up of the Puma cat logo" },
-    { key: "label", label: "Care Label", description: "Internal care and size label" },
+    { key: "teamlogo", label: "Team Logo", description: "Close-up of the Puma cat logo" },
+    { key: "label", label: "Internal Tag", description: "Internal care and size label" },
+  ],
+  other: [
+    { key: "front", label: "Front View", description: "Full front view of the jersey" },
+    { key: "back", label: "Back View", description: "Full back view with name/number" },
+    { key: "cat", label: "Brand Logo", description: "Close-up of the team logo" },
+    { key: "label", label: "Internal Tags", description: "Internal Tags" },
   ],
 }
 
@@ -70,7 +76,7 @@ export default function JerseyExchangeForm() {
   }
 
   const generateDeliveryCode = () => {
-    const code = `JEX-${Math.random().toString(36).substr(2, 9).toUpperCase()}`
+    const code = `FW-${Math.random().toString(36).substr(2, 9).toUpperCase()}`
     setDeliveryCode(code)
     setStep(4)
   }
@@ -86,23 +92,19 @@ export default function JerseyExchangeForm() {
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <Package className="h-8 w-8 text-blue-600" />
-            <h1 className="text-3xl font-bold text-gray-900">Jersey Exchange</h1>
-          </div>
           <p className="text-lg text-gray-600 mb-4">Trade your authentic football jerseys for brand coupon codes</p>
           <div className="flex items-center justify-center gap-6 text-sm">
             <div className="flex items-center gap-2">
               <Gift className="h-5 w-5 text-green-600" />
-              <span className="font-semibold">Minimum €15 coupon value</span>
+              <span className="font-semibold">At least €15 coupon value</span>
             </div>
             <div className="flex items-center gap-2">
               <Shield className="h-5 w-5 text-blue-600" />
-              <span className="font-semibold">Authenticity verified</span>
+              <span className="font-semibold">Under authentication review</span>
             </div>
             <div className="flex items-center gap-2">
               <Truck className="h-5 w-5 text-purple-600" />
-              <span className="font-semibold">Free shipping label</span>
+              <span className="font-semibold">Free shipping label for some EU countries</span>
             </div>
           </div>
         </div>
@@ -131,7 +133,7 @@ export default function JerseyExchangeForm() {
                 Jersey Information
               </CardTitle>
               <CardDescription>
-                Tell us about your jersey. We accept authentic jerseys from major brands like Adidas, Nike, and Puma.
+                Tell us about your jersey. We accept authentic jerseys from major brands like Adidas, Nike, Puma and other brands.
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
@@ -167,6 +169,14 @@ export default function JerseyExchangeForm() {
                           Puma
                         </div>
                       </SelectItem>
+                      <SelectItem value="other">
+                        <div className="flex items-center gap-2">
+                          <div className="w-4 h-4 bg-black rounded-sm flex items-center justify-center">
+                            <div className="text-white text-xs">🐱</div>
+                          </div>
+                          Other
+                        </div>
+                      </SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -175,7 +185,7 @@ export default function JerseyExchangeForm() {
                   <Label htmlFor="team">Team/Club *</Label>
                   <Input
                     id="team"
-                    placeholder="e.g., Real Madrid, Barcelona, Bayern Munich"
+                    placeholder="e.g., Real Madrid, Barcelona, Bayern Munich, Boca Juniors"
                     value={jerseyData.team}
                     onChange={(e) => handleInputChange("team", e.target.value)}
                   />
@@ -198,6 +208,7 @@ export default function JerseyExchangeForm() {
                       <SelectValue placeholder="Select size" />
                     </SelectTrigger>
                     <SelectContent>
+                      <SelectItem value="kids">Kids Size</SelectItem>
                       <SelectItem value="XS">XS</SelectItem>
                       <SelectItem value="S">S</SelectItem>
                       <SelectItem value="M">M</SelectItem>
@@ -231,18 +242,18 @@ export default function JerseyExchangeForm() {
                           Worn few times, like new
                         </div>
                       </SelectItem>
-                      <SelectItem value="good">
+                      <SelectItem value="verygood">
                         <div className="flex items-center gap-2">
                           <Badge variant="secondary" className="bg-yellow-100 text-yellow-800">
-                            Good
+                            Very Good
                           </Badge>
                           Some wear, no major flaws
                         </div>
                       </SelectItem>
-                      <SelectItem value="fair">
+                      <SelectItem value="good">
                         <div className="flex items-center gap-2">
                           <Badge variant="secondary" className="bg-orange-100 text-orange-800">
-                            Fair
+                            Good
                           </Badge>
                           Visible wear, minor flaws
                         </div>
@@ -441,7 +452,7 @@ export default function JerseyExchangeForm() {
                   <li>• We'll generate a free shipping label for you</li>
                   <li>• Our team will verify your jersey's authenticity</li>
                   <li>• You'll receive a coupon code worth at least €15</li>
-                  <li>• Verification typically takes 2-3 business days</li>
+                  <li>• Verification typically takes 1-2 business days</li>
                 </ul>
               </div>
 
@@ -517,7 +528,6 @@ export default function JerseyExchangeForm() {
                     • Include your delivery code <strong>{deliveryCode}</strong> inside the package
                   </li>
                   <li>• We'll send tracking updates to your email</li>
-                  <li>• Coupon codes are valid for 12 months</li>
                   <li>• Contact support if you have any questions</li>
                 </ul>
               </div>
