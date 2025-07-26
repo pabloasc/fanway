@@ -156,7 +156,7 @@ export default function JerseyExchangeForm() {
 </SelectItem>
 <SelectItem value="nike">
   <div className="flex items-center gap-2">
-    <img src="/nike.svg" alt="Nike" className="w-5 h-5" />
+    <img src="/nike.webp" alt="Nike" className="w-5 h-5" />
     Nike
   </div>
 </SelectItem>
