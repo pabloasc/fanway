@@ -88,8 +88,11 @@ export default function JerseyExchangeForm() {
   const requiredPhotos = currentRequirements.length
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50 p-4">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-white p-4">
+      <div
+  className="max-w-4xl mx-auto bg-white rounded-xl shadow-lg p-8"
+  style={{ fontFamily: "Arial, sans-serif" }}
+>
         {/* Header */}
         <div className="text-center mb-8">
           <p className="text-lg text-gray-600 mb-4">Trade your authentic football jerseys for brand coupon codes</p>
@@ -146,34 +149,26 @@ export default function JerseyExchangeForm() {
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="adidas">
-                        <div className="flex items-center gap-2">
-                          <div className="w-4 h-4 bg-black rounded-sm flex items-center justify-center">
-                            <div className="text-white text-xs font-bold">a</div>
-                          </div>
-                          Adidas
-                        </div>
-                      </SelectItem>
-                      <SelectItem value="nike">
-                        <div className="flex items-center gap-2">
-                          <div className="w-4 h-4 bg-black rounded-sm flex items-center justify-center">
-                            <div className="text-white text-xs">✓</div>
-                          </div>
-                          Nike
-                        </div>
-                      </SelectItem>
-                      <SelectItem value="puma">
-                        <div className="flex items-center gap-2">
-                          <div className="w-4 h-4 bg-black rounded-sm flex items-center justify-center">
-                            <div className="text-white text-xs">🐱</div>
-                          </div>
-                          Puma
-                        </div>
-                      </SelectItem>
+  <div className="flex items-center gap-2">
+    <img src="/adidas.png" alt="Adidas" className="w-5 h-5" />
+    Adidas
+  </div>
+</SelectItem>
+<SelectItem value="nike">
+  <div className="flex items-center gap-2">
+    <img src="/nike.svg" alt="Nike" className="w-5 h-5" />
+    Nike
+  </div>
+</SelectItem>
+<SelectItem value="puma">
+  <div className="flex items-center gap-2">
+    <img src="/puma.svg" alt="Puma" className="w-5 h-5" />
+    Puma
+  </div>
+</SelectItem>
                       <SelectItem value="other">
                         <div className="flex items-center gap-2">
-                          <div className="w-4 h-4 bg-black rounded-sm flex items-center justify-center">
-                            <div className="text-white text-xs">🐱</div>
-                          </div>
+                        <img src="/ball.png" alt="Puma" className="w-5 h-5" />
                           Other
                         </div>
                       </SelectItem>
